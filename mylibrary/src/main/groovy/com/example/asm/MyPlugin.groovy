@@ -6,6 +6,6 @@ import org.gradle.api.Project
 class MyPlugin implements Plugin<Project> {
     @Override
     void apply(Project project) {
-        project.android.registerTransform(new MyTransform(project))
+        project.android.registerTransform(new AsmTransform())
     }
 }
