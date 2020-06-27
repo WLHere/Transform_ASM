@@ -1,5 +1,6 @@
 apply plugin: 'groovy'// 插件开发必备: groovy
 apply plugin: 'maven'// 发布插件用
+apply plugin: 'kotlin'// kotlin
 
 dependencies {
     implementation gradleApi()//gradle sdk
@@ -24,3 +25,16 @@ uploadArchives {
 repositories {
     jcenter()
 }
+
+compileGroovy {
+    dependsOn tasks.getByPath('compileKotlin')
+    classpath += files(compileKotlin.destinationDir)
+}
+
+//compileKotlin {
+//    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8
+//}
+//
+//compileTestKotlin {
+//    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8
+//}
